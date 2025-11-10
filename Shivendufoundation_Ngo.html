@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>शिवेन्दू फाउंडेशन – समाजासाठीची संवेदना</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar with Glassmorphism */
+    .navbar {
+      background: rgba(99, 178, 189, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .navbar.scrolled {
+      background: rgba(99, 178, 189, 0.98);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-brand img {
+      transition: transform 0.4s ease;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .navbar-brand img:hover {
+      transform: scale(1.08) rotate(2deg);
+    }
+
+    .navbar a.nav-link {
+      color: #1a1a1a !important;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin: 0 12px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a.nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #e53935, #ffc107);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .navbar a.nav-link:hover::after {
+      width: 100%;
+    }
+
+    .navbar a.nav-link:hover {
+      color: #e53935 !important;
+      transform: translateY(-2px);
+    }
+
+    .btn-donate {
+      background: linear-gradient(135deg, #e53935, #f56842);
+      color: #fff !important;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 6px 20px rgba(229, 57, 53, 0.3);
+      border: 2px solid transparent;
+    }
+
+    .btn-donate:hover {
+      background: linear-gradient(135deg, #f56842, #e53935);
+      box-shadow: 0 10px 30px rgba(229, 57, 53, 0.5);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Hero Section with Video Background */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      animation: kenburns 20s ease-in-out infinite;
+    }
+
+    @keyframes kenburns {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(229, 57, 53, 0.7), rgba(155, 204, 59, 0.6));
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.5) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 50px 30px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.3;
+      margin-bottom: 25px;
+      color: #fff;
+      font-weight: 800;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #f5f5f5;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      font-weight: 500;
+    }
+
+    .btn-custom {
+      display: inline-block;
+      margin: 12px 8px;
+      padding: 15px 35px;
+      background: linear-gradient(135deg, #9bcc3b, #7fc928);
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 25px rgba(155, 204, 59, 0.4);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-custom::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-custom:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(135deg, #7fc928, #9bcc3b);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(155, 204, 59, 0.6);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+
+    /* Sections with improved spacing and animations */
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    .about-section, .founder-section, .initiatives-section {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-section::before, .founder-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(229, 57, 53, 0.08), transparent);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
+    }
+
+    .about-container, .founder-container, .initiatives-container {
+      animation: fadeIn 1s ease-out;
+      transition: all 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .initiative-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .initiative-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .initiative-card:hover::before {
+      opacity: 1;
+      top: -10%;
+      left: -10%;
+    }
+
+    .initiative-card i {
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .initiative-card:hover i {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    /* Smooth scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .hero-content { padding: 35px 20px; }
+      .btn-custom { padding: 12px 25px; font-size: 0.95rem; }
+      .about-section, .founder-section, .initiatives-section { padding: 80px 0; }
+    }
+
+    /* Additional modern touches */
+    ::selection {
+      background: #e53935;
+      color: white;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #e53935, #9bcc3b);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #9bcc3b, #e53935);
+    }
+  </style>
+</head>
+
+<body>
+  
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home">
+      <img src="./Shivendu Foundation PNG.png" alt="Shivendu Foundation Logo" width="200" height="50" class="me-2">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#home">मुख्य पृष्ठ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">आमच्याबद्दल</a></li>
+        <li class="nav-item"><a class="nav-link" href="#initiatives">उपक्रम</a></li>
+        <li class="nav-item"><a class="nav-link" href="#donate">दान</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">संपर्क</a></li>
+        <li class="nav-item ms-3">
+          <a href="#donate" class="btn-donate">दान करा</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="slider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80');"></div>
+    <div class="slide" style="background-image: url('https://thumbs.dreamstime.com/b/medical-camp-13742635.jpg');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/flagged/photo-1574097656146-0b43b7660cb6?w=1920&q=80');"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1>शिवेन्दू फाउंडेशन – समाजासाठीची संवेदना, परिवर्तनासाठीची कृती!</h1>
+    <p>💚 "एक छोटं पाऊल, मोठ्या परिवर्तनाची सुरुवात."</p>
+    <p>शिक्षण, आरोग्य, महिला सक्षमीकरण आणि पर्यावरण संवर्धनासाठी आमचं कार्य अखंड सुरू आहे.</p>
+    <div class="mt-4">
+      <a href="#about" class="btn-custom">आमच्याबद्दल जाणून घ्या</a>
+      <a href="#donate" class="btn-custom">दान करा</a>
+      <a href="#join" class="btn-custom">Volunteer व्हा</a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section reveal" style="background: linear-gradient(to bottom right, #fafafa, #f9fbe7); padding: 100px 0;">
+  <div class="container">
+    <div class="about-container" style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; background: #ffffff; border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); padding: 50px 40px; border-top: 8px solid #E53935;">
+      <div class="about-image" style="flex: 1; min-width: 300px;">
+        <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1000&q=80" 
+             alt="Shivendu Foundation Work" style="width: 100%; max-width: 450px; border-radius: 15px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);">
+      </div>
+
+      <div class="about-text" style="flex: 1; text-align: left;">
+        <h2 style="color: #E53935; font-weight: 700; margin-bottom: 20px; font-size: 2rem; border-left: 6px solid #8BC34A; padding-left: 12px;">💫 आमचं ध्येय आणि प्रवास</h2>
+        <p style="color: #333; font-size: 1.1rem; line-height: 1.8; margin-bottom: 15px;">
+          <strong style="color: #2196F3;">शिवेन्दू फाउंडेशन</strong>ची स्थापना समाजात सकारात्मक परिवर्तन घडवण्यासाठी झाली आहे. 
+          आमचं ध्येय आत्मविश्वास, सन्मान आणि स्वावलंबनाची भावना निर्माण करणं आहे.
+        </p>
+        <p style="color: #333; font-size: 1.1rem; line-height: 1.8; margin-bottom: 15px;">
+          आमचं कार्य केवळ मदतीपुरतं मर्यादित नाही — 
+          तर आत्मविश्वास, सन्मान आणि स्वावलंबनाची भावना निर्माण करणं हेच आमचं 
+          खऱ्या अर्थाने ध्येय आहे.
+        </p>
+        <p class="quote" style="color: #155724; background: #f1f8e9; border-left: 5px solid #8BC34A; font-style: italic; padding: 15px 20px; border-radius: 8px; margin-top: 25px; font-size: 1.1rem;">
+          "जेव्हा आपण समाजासाठी काम करतो, तेव्हा समाज आपल्यासाठी बदल घडवतो.
+          या विचारानेच आम्ही पुढे जात आहोत."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder Section -->
+<section id="founder" class="founder-section reveal" style="background: linear-gradient(135deg, #f9fbe7 0%, #f1f8e9 50%, #fff 100%); padding: 100px 0;">
+  <div class="container">
+    <div class="founder-container" style="max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); padding: 60px 50px; text-align: center; border-top: 8px solid #e53935; position: relative; overflow: hidden;">
+      
+      <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(to right, #e53935, #FFC107, #8BC34A, #2196F3);"></div>
+      
+      <h2 class="section-title" style="font-weight: 700; margin-bottom: 10px; font-size: 2rem; color: #2c3e50;">
+        🌟 संस्थापक व अध्यक्ष – 
+        <span class="founder-name" style="color: #e53935; background: linear-gradient(90deg, #FFC107, #8BC34A); padding: 5px 12px; border-radius: 8px; font-weight: 800; display: inline-block; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease;">श्री. कुणाल प्रशांत पाटील</span>
+      </h2>
+
+      <p style="color: #a01813; font-weight: 600; font-size: 1rem; margin-bottom: 30px;">स्थापना दिनांक: 11 जानेवारी 2023</p>
+
+      <p style="font-size: 1.1rem; color: #333; line-height: 1.8; background: #f9fdf9; border-left: 6px solid #8BC34A; border-radius: 12px; padding: 20px 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: left;">
+        शिवेन्दू फाउंडेशनचे संस्थापक आणि अध्यक्ष <strong>श्री. कुणाल प्रशांत पाटील</strong> हे एक तरुण, प्रेरणादायी आणि संवेदनशील समाजसेवक आहेत.
+        त्यांचा ठाम विश्वास आहे की "सेवा हीच खरी साधना आहे."
+      </p>
+
+      <p style="font-size: 1.1rem; color: #333; line-height: 1.8; background: #f9fdf9; border-left: 6px solid #8BC34A; border-radius: 12px; padding: 20px 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: left;">
+        समाजातील दुर्बल घटकांच्या प्रगतीसाठी ते निःस्वार्थ भावनेने काम करत आहेत. त्यांच्या नेतृत्वाखाली संस्थेने शिक्षण, आरोग्य, महिला सक्षमीकरण आणि पर्यावरण संवर्धन या क्षेत्रांमध्ये अनेक उपक्रम राबवून असंख्य लोकांच्या आयुष्यात सकारात्मक बदल घडवला आहे.
+      </p>
+
+      <p style="font-size: 1.15rem; color: #ac1010; font-style: italic; background: #fff8e1; border-left: 6px solid #FFC107; border-radius: 12px; padding: 20px 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: left;">
+        त्यांचं स्वप्न आहे — "प्रत्येक घरात शिक्षण, आरोग्य आणि आशेची ज्योत प्रज्वलित व्हावी."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Initiatives Section -->
+<section id="initiatives" class="initiatives-section reveal" style="background: linear-gradient(135deg, #fafafa 0%, #f3f7ef 100%); padding: 100px 0;">
+  <div class="container">
+    <div class="initiatives-container" style="max-width: 1100px; margin: 0 auto; text-align: center; background: #ffffff; border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); padding: 60px 40px;">
+      
+      <h2 class="section-title" style="font-size: 2rem; font-weight: 700; color: #155724; margin-bottom: 20px; position: relative;">💡 आमचे प्रमुख उपक्रम</h2>
+      <div style="width: 120px; height: 4px; background: linear-gradient(to right, #e53935, #FFC107, #8BC34A, #2196F3); margin: 10px auto 50px; border-radius: 5px;"></div>
+
+      <div class="initiatives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+        
+        <div class="initiative-card" style="background: linear-gradient(135deg, #ffeb3b, #ffc107); color: #3e2723; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-graduation-cap" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">🎓 शिक्षणासाठी प्रयत्न</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">गरजू विद्यार्थ्यांसाठी शैक्षणिक साहित्य, मार्गदर्शन व वाचनालय. अनाथ आणि दिव्यांग विद्यार्थ्यांसाठी विशेष शिक्षण प्रकल्प.</p>
+        </div>
+
+        <div class="initiative-card" style="background: linear-gradient(135deg, #66bb6a, #43a047); color: #fff; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-heartbeat" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">🏥 आरोग्य जनजागृती</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">मोफत आरोग्य तपासणी शिबिरे, रक्तदान मोहिमा आणि पोषण जनजागृती कार्यक्रम ग्रामीण भागात नियमितपणे राबवले जातात.</p>
+        </div>
+
+        <div class="initiative-card" style="background: linear-gradient(135deg, #64b5f6, #1976d2); color: #fff; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-female" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">👩‍🔧 महिला सक्षमीकरण</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">महिलांना शिवणकला, ब्युटी पार्लर आणि संगणक प्रशिक्षण देऊन आर्थिक स्वावलंबनाची दिशा. स्व-साहाय्य गटांद्वारे नेतृत्व व आत्मविश्वास वाढवणं.</p>
+        </div>
+
+        <div class="initiative-card" style="background: linear-gradient(135deg, #a5d6a7, #81c784); color: #fff; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-leaf" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">🌱 पर्यावरण संवर्धन</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">वृक्षारोपण, जलसंधारण आणि प्लास्टिकमुक्ती मोहिमा राबवून हरित महाराष्ट्रासाठी योगदान.</p>
+        </div>
+
+        <div class="initiative-card" style="background: linear-gradient(135deg, #ef5350, #e53935); color: #fff; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-users" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">🧑‍🎓 युवा विकास</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">करिअर मार्गदर्शन, रोजगार प्रशिक्षण आणि क्रीडा उपक्रमांद्वारे युवकांना सक्षम व जबाबदार नागरिक बनवणं.</p>
+        </div>
+
+        <div class="initiative-card" style="background: linear-gradient(135deg, #ffb74d, #fb8c00); color: #fff; border-radius: 15px; padding: 30px 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;">
+          <i class="fas fa-tractor" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h5 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px;">🌾 ग्रामीण विकास</h5>
+          <p style="font-size: 1rem; line-height: 1.6;">शेतकरी आणि ग्रामीण भागातील लोकांसाठी आधुनिक शेती तंत्रज्ञान, स्वच्छता अभियान आणि पायाभूत सुविधा विकासासाठी उपक्रम.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Impact Section with Advanced Features -->
+<section id="impact" class="reveal" style="padding:100px 0; background:linear-gradient(135deg,#fef8f5 0%,#f1fff2 100%); position: relative; overflow: hidden;">
+  
+  <!-- Floating Background Elements -->
+  <div style="position: absolute; top: 10%; left: 5%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(229,57,53,0.1), transparent); border-radius: 50%; animation: float 8s ease-in-out infinite;"></div>
+  <div style="position: absolute; bottom: 15%; right: 8%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(155,204,59,0.1), transparent); border-radius: 50%; animation: float 10s ease-in-out infinite reverse;"></div>
+  
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="text-center" style="max-width:1300px; margin: 0 auto; background:#ffffff; border-radius:30px; box-shadow:0 15px 50px rgba(0,0,0,0.12); padding:80px 60px; position: relative; overflow: hidden;">
+      
+      <!-- Decorative Corner Elements -->
+      <div style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #e53935, transparent); opacity: 0.1; border-radius: 0 0 100% 0;"></div>
+      <div style="position: absolute; bottom: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, transparent, #9bcc3b); opacity: 0.1; border-radius: 100% 0 0 0;"></div>
+      
+      <!-- Title Section -->
+      <div style="position: relative; margin-bottom: 60px;">
+        <h2 class="section-title" style="color:#e9453f; font-weight:800; margin-bottom:15px; font-size:2.5rem; letter-spacing: 0.5px;">
+          📊 संस्थेचा सामाजिक प्रभाव
+        </h2>
+        <div style="width:100px; height:5px; background:linear-gradient(90deg, #e53935, #FFC107, #9bcc3b); margin:0 auto 25px; border-radius:10px; box-shadow: 0 3px 10px rgba(229,57,53,0.3);"></div>
+        <p style="color:#555; font-size:1.2rem; max-width:900px; margin:0 auto; line-height: 1.8; font-weight: 500;">
+          शिवेन्दू फाउंडेशनच्या प्रयत्नांमुळे हजारो लोकांच्या आयुष्यात सकारात्मक बदल घडले आहेत.<br>
+          <span style="color:#e53935; font-weight: 600;">प्रत्येक आकडा केवळ कामाचं मोजमाप नाही, तर भावनांचा आणि सहकार्याचा पुरावा आहे.</span>
+        </p>
+      </div>
+
+      <!-- Statistics Grid with Advanced Animations -->
+      <div class="impact-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:35px; margin-bottom: 50px;">
+
+        <!-- Card 1: Education -->
+        <div class="impact-card" data-count="500" style="background:linear-gradient(135deg, #fff5f3, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #e9453f; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(229,57,53,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">🎓</div>
+          <h3 class="counter" style="color:#e9453f; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">विद्यार्थ्यांना<br>शैक्षणिक मदत</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #e9453f, #f56842); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+        <!-- Card 2: Health -->
+        <div class="impact-card" data-count="100" style="background:linear-gradient(135deg, #fffdf2, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #FFC107; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,193,7,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">🏥</div>
+          <h3 class="counter" style="color:#FFC107; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">आरोग्य शिबिरे आणि<br>तपासणी मोहिमा</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #FFC107, #ffb300); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+        <!-- Card 3: Women Empowerment -->
+        <div class="impact-card" data-count="200" style="background:linear-gradient(135deg, #f3fff7, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #9bcc3b; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(155,204,59,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">👩‍🔧</div>
+          <h3 class="counter" style="color:#9bcc3b; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">महिलांना<br>रोजगार प्रशिक्षण</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #9bcc3b, #7fc928); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+        <!-- Card 4: Environment -->
+        <div class="impact-card" data-count="10000" style="background:linear-gradient(135deg, #f0fff4, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #4CAF50; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(76,175,80,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">🌱</div>
+          <h3 class="counter" style="color:#4CAF50; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">झाडांची लागवड आणि<br>पर्यावरण प्रकल्प</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #4CAF50, #388e3c); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+        <!-- Card 5: Youth Development -->
+        <div class="impact-card" data-count="300" style="background:linear-gradient(135deg, #f3faff, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #2196F3; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(33,150,243,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">🧑‍🎓</div>
+          <h3 class="counter" style="color:#2196F3; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">युवकांना<br>करिअर मार्गदर्शन</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #2196F3, #1976D2); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+        <!-- Card 6: Community Programs -->
+        <div class="impact-card" data-count="50" style="background:linear-gradient(135deg, #f7f4ff, #ffffff); border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.08); padding:45px 30px; transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-top:8px solid #9C27B0; position: relative; overflow: hidden; cursor: pointer;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(156,39,176,0.1), transparent); border-radius: 50%; transition: all 0.5s ease;"></div>
+          <div style="font-size:3.5rem; margin-bottom: 20px; transition: transform 0.5s ease;">🤝</div>
+          <h3 class="counter" style="color:#9C27B0; font-size:3rem; font-weight:800; margin-bottom: 15px; transition: all 0.3s ease;">0</h3>
+          <p style="margin:0; font-weight:600; font-size: 1.1rem; color: #333; line-height: 1.6;">सामाजिक उपक्रम<br>आणि सहयोग</p>
+          <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #9C27B0, #7B1FA2); margin: 15px auto 0; border-radius: 5px; transition: width 0.5s ease;"></div>
+        </div>
+
+      </div>
+
+      <!-- Progress Bar Section -->
+      <div style="background: linear-gradient(135deg, #fff8f6, #f5fff8); border-radius: 20px; padding: 40px; margin-bottom: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="color: #333; font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">📈 आमची वाढ आणि विकास</h3>
+        
+        <!-- Progress Bar 1 -->
+        <div style="margin-bottom: 25px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">शैक्षणिक कार्यक्रम पूर्णत्व</span>
+            <span style="font-weight: 700; color: #e53935;" class="progress-percent" data-target="85">0%</span>
+          </div>
+          <div style="background: #f0f0f0; height: 12px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="progress-bar" data-width="85" style="width: 0%; height: 100%; background: linear-gradient(90deg, #e53935, #f56842); border-radius: 10px; transition: width 2s ease;"></div>
+          </div>
+        </div>
+
+        <!-- Progress Bar 2 -->
+        <div style="margin-bottom: 25px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">आरोग्य सेवा पोहोच</span>
+            <span style="font-weight: 700; color: #FFC107;" class="progress-percent" data-target="92">0%</span>
+          </div>
+          <div style="background: #f0f0f0; height: 12px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="progress-bar" data-width="92" style="width: 0%; height: 100%; background: linear-gradient(90deg, #FFC107, #ffb300); border-radius: 10px; transition: width 2s ease 0.2s;"></div>
+          </div>
+        </div>
+
+        <!-- Progress Bar 3 -->
+        <div style="margin-bottom: 25px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">महिला सक्षमीकरण उद्दिष्ट</span>
+            <span style="font-weight: 700; color: #9bcc3b;" class="progress-percent" data-target="78">0%</span>
+          </div>
+          <div style="background: #f0f0f0; height: 12px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="progress-bar" data-width="78" style="width: 0%; height: 100%; background: linear-gradient(90deg, #9bcc3b, #7fc928); border-radius: 10px; transition: width 2s ease 0.4s;"></div>
+          </div>
+        </div>
+
+        <!-- Progress Bar 4 -->
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">पर्यावरण संरक्षण लक्ष्य</span>
+            <span style="font-weight: 700; color: #4CAF50;" class="progress-percent" data-target="95">0%</span>
+          </div>
+          <div style="background: #f0f0f0; height: 12px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="progress-bar" data-width="95" style="width: 0%; height: 100%; background: linear-gradient(90deg, #4CAF50, #388e3c); border-radius: 10px; transition: width 2s ease 0.6s;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inspirational Quote -->
+      <div style="position: relative; background: linear-gradient(135deg, #fff5f3, #f5fff8); border-left: 8px solid #e53935; border-radius: 20px; padding: 35px 40px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); margin-top: 50px;">
+        <div style="position: absolute; top: -15px; left: 30px; background: #e53935; color: white; padding: 8px 20px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(229,57,53,0.3);">💬 प्रेरणादायी विचार</div>
+        <p style="margin: 20px 0 0 0; color: #e53935; font-style: italic; font-size: 1.4rem; font-weight: 600; line-height: 1.8; text-align: center;">
+          "हे फक्त आकडे नाहीत, तर हजारो आशा आणि हसऱ्या चेहऱ्यांचा प्रवास आहे.<br>
+          <span style="color: #9bcc3b; font-size: 1.2rem;">प्रत्येक संख्येमागे एक कथा, एक स्वप्न, एक बदल आहे."</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .impact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+  }
+
+  .impact-card:hover > div:first-child {
+    width: 200px;
+    height: 200px;
+    top: -70px;
+    right: -70px;
+  }
+
+  .impact-card:hover > div:nth-child(2) {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .impact-card:hover > div:last-child {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .impact-grid {
+      grid-template-columns: 1fr !important;
+      gap: 25px !important;
+    }
+    
+    .impact-card {
+      padding: 35px 25px !important;
+    }
+    
+    .counter {
+      font-size: 2.5rem !important;
+    }
+  }
+</style>
+
+<!-- Core Values Section -->
+<section id="core-values" class="reveal" style="padding:80px 0; background:linear-gradient(135deg, #fff7f4 0%, #fdfcf8 50%, #f5fff7 100%); transition:all 0.4s ease;">
+  <div class="container text-center" style="max-width:950px; background:#ffffff; border-radius:25px; box-shadow:0 10px 35px rgba(0,0,0,0.08); padding:70px 50px; transition:all 0.4s ease;">
+    
+    <h2 class="section-title" style="color:#e9453f; font-weight:800; font-size:2.3rem; margin-bottom:20px; letter-spacing:1px;">💫 आमच्या कार्यामागचं तत्त्वज्ञान</h2>
+
+    <div style="width:80px; height:4px; background:#9bcc3b; margin:0 auto 50px; border-radius:5px;"></div>
+
+    <p style="color:#333; font-size:1.15rem; line-height:1.9; background:linear-gradient(135deg,#fff8f6,#f5fff8); border-left:6px solid #e9453f; border-radius:15px; padding:30px 35px; box-shadow:0 6px 25px rgba(0,0,0,0.06); font-weight:500; margin-bottom:50px;">
+      शिवेन्दू फाउंडेशनचं प्रत्येक पाऊल पारदर्शकता, जबाबदारी आणि सहकार्याच्या मूल्यांवर आधारित आहे.  
+      आमच्यासाठी सेवा म्हणजे केवळ देणं नाही — ती समाजाशी असलेली आपुलकी आणि विश्वासाची बांधिलकी आहे.  
+      आमचं कार्य मानवतेचा सन्मान, एकता आणि सकारात्मक बदल यांचं प्रतीक आहे.
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; justify-items:center;">
+
+      <div style="background:#fffdf6; border-radius:15px; padding:35px 25px; width:100%; max-width:380px; border-top:6px solid #e9453f; box-shadow:0 5px 15px rgba(0,0,0,0.05); transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 25px rgba(233,69,63,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <div style="font-size:2rem;">🤝</div>
+        <h4 style="color:#e9453f; font-weight:700; margin-top:10px;">एकता (Unity)</h4>
+        <p style="color:#555; font-size:1rem;">एकत्र प्रयत्नांतूनच मोठे बदल घडतात — समाजाची खरी ताकद एकतेत आहे.</p>
+      </div>
+
+      <div style="background:#f3fff7; border-radius:15px; padding:35px 25px; width:100%; max-width:380px; border-top:6px solid #9bcc3b; box-shadow:0 5px 15px rgba(0,0,0,0.05); transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 25px rgba(155,204,59,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <div style="font-size:2rem;">💚</div>
+        <h4 style="color:#28a745; font-weight:700; margin-top:10px;">करुणा (Compassion)</h4>
+        <p style="color:#555; font-size:1rem;">इतरांच्या वेदना समजून त्यांना मदत करणे — हेच आमचं खरे ध्येय.</p>
+      </div>
+
+      <div style="background:#f3f9ff; border-radius:15px; padding:35px 25px; width:100%; max-width:380px; border-top:6px solid #0794d1; box-shadow:0 5px 15px rgba(0,0,0,0.05); transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 25px rgba(7,148,209,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <div style="font-size:2rem;">🌟</div>
+        <h4 style="color:#0794d1; font-weight:700; margin-top:10px;">प्रामाणिकपणा (Honesty)</h4>
+        <p style="color:#555; font-size:1rem;">सत्यता आणि पारदर्शकतेनेच समाजाचा व संस्थेचा विश्वास टिकतो.</p>
+      </div>
+
+      <div style="background:#fff7f4; border-radius:15px; padding:35px 25px; width:100%; max-width:380px; border-top:6px solid #f8c414; box-shadow:0 5px 15px rgba(0,0,0,0.05); transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 25px rgba(248,196,20,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <div style="font-size:2rem;">🔥</div>
+        <h4 style="color:#f8c414; font-weight:700; margin-top:10px;">प्रेरणा (Inspiration)</h4>
+        <p style="color:#555; font-size:1rem;">आशा, उत्साह आणि सकारात्मक विचारांचा दीप प्रज्वलित करणे हेच आमचं ध्येय आहे.</p>
+      </div>
+
+    </div>
+
+    <p style="margin-top:50px; color:#0794d1; font-style:italic; font-size:1.2rem; font-weight:600;">
+      "सेवा, एकता आणि प्रामाणिकपणा — हेच आमच्या वाटचालीचं खरे मूल्य."
+    </p>
+
+  </div>
+</section>
+
+<!-- Donation Section -->
+<section id="donate" class="reveal" style="padding:80px 0; background:linear-gradient(135deg, #fffaf5 0%, #fdfcf8 50%, #f8fff6 100%); transition:all 0.4s ease;">
+  <div class="container text-center" style="max-width:950px; background:#ffffff; border-radius:25px; box-shadow:0 8px 25px rgba(0,0,0,0.1); padding:60px 45px; transition:all 0.4s ease;">
+
+    <h2 class="section-title" style="color:#e9453f; font-weight:800; font-size:2.3rem; margin-bottom:25px;">💖 आपलं छोटंसं योगदान, कोणाचं आयुष्य बदलू शकतं!</h2>
+
+    <div style="width:80px; height:4px; background:#9bcc3b; margin:0 auto 40px; border-radius:5px;"></div>
+
+    <p style="font-size:1.1rem; color:#333; line-height:1.9; background:linear-gradient(135deg, #fff8f6, #f5fff8); border-left:6px solid #e9453f; border-radius:15px; padding:25px 30px; box-shadow:0 6px 20px rgba(0,0,0,0.06); font-weight:500;">
+      शिवेन्दू फाउंडेशन प्रत्येक मदतीचं स्वागत करतं — कारण प्रत्येक दानामध्ये आशेची किरणं असतात.  
+      तुमचं योगदान एखाद्या विद्यार्थ्याला शिक्षण, एखाद्या कुटुंबाला अन्न, किंवा एखाद्या रुग्णाला आरोग्य देऊ शकतं.  
+      आज तुमचं एक पाऊल कोणाचं उद्याचं भविष्य घडवू शकतं.
+    </p>
+
+    <div class="mx-auto mt-5" style="max-width:600px; text-align:center; padding:35px 30px; border:3px solid transparent; border-image:linear-gradient(135deg,#e9453f,#9bcc3b) 1; border-radius:20px; box-shadow:0 6px 25px rgba(0,0,0,0.08); background:#ffffff;">
+
+      <input type="text" id="name" placeholder="तुमचं नाव" required style="width:100%; padding:14px 16px; margin-bottom:15px; border:2px solid #f1f1f1; border-radius:10px; font-size:1rem; background:#fcfcfc; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05); transition:0.3s;" onfocus="this.style.borderColor='#e9453f';" onblur="this.style.borderColor='#f1f1f1';">
+
+      <input type="email" id="email" placeholder="ईमेल आयडी" required style="width:100%; padding:14px 16px; margin-bottom:15px; border:2px solid #f1f1f1; border-radius:10px; font-size:1rem; background:#fcfcfc; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05); transition:0.3s;" onfocus="this.style.borderColor='#e9453f';" onblur="this.style.borderColor='#f1f1f1';">
+
+      <input type="number" id="amount" placeholder="दानाची रक्कम (₹)" required style="width:100%; padding:14px 16px; margin-bottom:15px; border:2px solid #f1f1f1; border-radius:10px; font-size:1rem; background:#fcfcfc; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05); transition:0.3s;" onfocus="this.style.borderColor='#9bcc3b';" onblur="this.style.borderColor='#f1f1f1';">
+
+      <textarea id="message" rows="3" placeholder="संदेश (ऐच्छिक)" style="width:100%; padding:14px 16px; margin-bottom:20px; border:2px solid #f1f1f1; border-radius:10px; font-size:1rem; background:#fcfcfc; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05); transition:0.3s;" onfocus="this.style.borderColor='#9bcc3b';" onblur="this.style.borderColor='#f1f1f1';"></textarea>
+
+      <button type="button" onclick="handleDonation()" style="background:linear-gradient(135deg,#e9453f,#f56842); color:white; padding:14px 45px; border:none; border-radius:12px; font-size:1.1rem; font-weight:600; cursor:pointer; letter-spacing:0.5px; box-shadow:0 5px 20px rgba(233,69,63,0.25); transition:all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(233,69,63,0.35)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 20px rgba(233,69,63,0.25)';">
+        ❤️ दान करा आता
+      </button>
+    </div>
+
+    <p style="margin-top:40px; color:#0794d1; font-style:italic; font-size:1.2rem; font-weight:600; background:#f3fff7; border-left:6px solid #9bcc3b; border-radius:15px; padding:22px 28px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+      "देणं म्हणजे गमावणं नाही — तर कोणाच्या जीवनात उजेड पेरणं आहे."
+    </p>
+
+  </div>
+</section>
+
+<!-- Join Section -->
+<section id="join" class="reveal" style="padding:80px 0; background:linear-gradient(135deg, #fff8f6 0%, #fdfcf8 40%, #f6fff7 100%); transition:all 0.4s ease;">
+  <div class="container text-center" style="max-width:950px; background:#ffffff; border-radius:25px; box-shadow:0 10px 35px rgba(0,0,0,0.08); padding:70px 50px; transition:all 0.3s ease;">
+
+    <h2 class="section-title" style="color:#e9453f; font-weight:800; font-size:2.3rem; margin-bottom:25px;">🙌 आपणही या परिवर्तनाच्या प्रवासात सहभागी व्हा</h2>
+
+    <div style="width:90px; height:4px; background:#9bcc3b; margin:0 auto 35px; border-radius:5px;"></div>
+
+    <p style="font-size:1.15rem; color:#333; line-height:1.9; background:linear-gradient(135deg,#fffaf5,#f7fff8); border-left:6px solid #e9453f; border-radius:15px; padding:25px 30px; box-shadow:0 6px 20px rgba(0,0,0,0.05); font-weight:500; max-width:800px; margin:0 auto 40px;">
+      शिवेन्दू फाउंडेशन प्रत्येक त्या व्यक्तीचं स्वागत करतं जी समाजात सकारात्मक बदल घडवू इच्छिते.  
+      Volunteer म्हणून सहभागी व्हा, दान करा किंवा तुमच्या वेळ आणि कौशल्यातून योगदान द्या.  
+      आपला प्रत्येक प्रयत्न समाजाला नव्या उंचीवर नेऊ शकतो. 🌍
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
+
+      <a href="#donate" style="display:inline-block; background:linear-gradient(135deg,#e9453f,#f56842); color:#fff; padding:14px 40px; border-radius:12px; text-decoration:none; font-size:1.1rem; font-weight:600; box-shadow:0 6px 20px rgba(233,69,63,0.25); transition:all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 30px rgba(233,69,63,0.35)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(233,69,63,0.25)';">
+        ❤️ Volunteer बना
+      </a>
+
+      <a href="#contact" style="display:inline-block; background:linear-gradient(135deg,#9bcc3b,#7fc928); color:#fff; padding:14px 40px; border-radius:12px; text-decoration:none; font-size:1.1rem; font-weight:600; box-shadow:0 6px 20px rgba(155,204,59,0.25); transition:all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 30px rgba(155,204,59,0.35)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(155,204,59,0.25)';">
+        📞 Contact Us
+      </a>
+    </div>
+
+    <p style="margin-top:50px; color:#0794d1; font-style:italic; font-size:1.2rem; font-weight:600;">
+      "सामूहिक प्रयत्नांनीच समाजात खरा बदल घडतो — चला, आपणही हातभार लावूया."
+    </p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="reveal" style="padding:80px 0; background:linear-gradient(135deg, #f9fbe7 0%, #fdfcf8 100%);">
+  <div class="container text-center" style="max-width:950px; background:#ffffff; border-radius:25px; box-shadow:0 10px 35px rgba(0,0,0,0.08); padding:70px 50px;">
+    
+    <h2 class="section-title" style="color:#e9453f; font-weight:800; font-size:2.3rem; margin-bottom:25px;">📞 आमच्याशी संपर्क साधा</h2>
+    
+    <div style="width:80px; height:4px; background:#9bcc3b; margin:0 auto 40px; border-radius:5px;"></div>
+
+    <p style="font-size:1.15rem; color:#333; line-height:1.9; margin-bottom:40px;">
+      तुमच्या प्रश्नांसाठी, सूचनांसाठी किंवा सहकार्यासाठी आम्ही नेहमी उपलब्ध आहोत.
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:30px; margin-bottom:40px;">
+      
+      <div style="background:linear-gradient(135deg, #fff8f6, #ffffff); border-radius:15px; padding:30px 20px; box-shadow:0 5px 15px rgba(0,0,0,0.05); border-top:4px solid #e9453f; transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <i class="fas fa-map-marker-alt" style="font-size:2.5rem; color:#e9453f; margin-bottom:15px;"></i>
+        <h4 style="color:#333; font-weight:700; margin-bottom:10px;">पत्ता</h4>
+        <p style="color:#666; margin:0;">नाशिक, महाराष्ट्र, भारत</p>
+      </div>
+
+      <div style="background:linear-gradient(135deg, #f5fff8, #ffffff); border-radius:15px; padding:30px 20px; box-shadow:0 5px 15px rgba(0,0,0,0.05); border-top:4px solid #9bcc3b; transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <i class="fas fa-envelope" style="font-size:2.5rem; color:#9bcc3b; margin-bottom:15px;"></i>
+        <h4 style="color:#333; font-weight:700; margin-bottom:10px;">ईमेल</h4>
+        <p style="color:#666; margin:0;"><a href="mailto:info@shivendufoundation.org" style="color:#9bcc3b; text-decoration:none;">info@shivendufoundation.org</a></p>
+      </div>
+
+      <div style="background:linear-gradient(135deg, #f3faff, #ffffff); border-radius:15px; padding:30px 20px; box-shadow:0 5px 15px rgba(0,0,0,0.05); border-top:4px solid #0794d1; transition:all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+        <i class="fas fa-phone-alt" style="font-size:2.5rem; color:#0794d1; margin-bottom:15px;"></i>
+        <h4 style="color:#333; font-weight:700; margin-bottom:10px;">फोन</h4>
+        <p style="color:#666; margin:0;"><a href="tel:+919XXXXXXXXX" style="color:#0794d1; text-decoration:none;">+91 9XXXXXXXXX</a></p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:40px;">
+      <h4 style="color:#333; font-weight:700; margin-bottom:20px;">सोशल मीडियावर आमच्याशी जुडा</h4>
+      <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+        <a href="#" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #1877f2, #4267B2); color:white; border-radius:50%; font-size:1.5rem; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(24,119,242,0.3);" onmouseover="this.style.transform='translateY(-5px) scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(24,119,242,0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(24,119,242,0.3)';"><i class="fab fa-facebook-f"></i></a>
+
+        <a href="#" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #e1306c, #C13584); color:white; border-radius:50%; font-size:1.5rem; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(225,48,108,0.3);" onmouseover="this.style.transform='translateY(-5px) scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(225,48,108,0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(225,48,108,0.3)';"><i class="fab fa-instagram"></i></a>
+
+        <a href="#" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #1da1f2, #0d8bd9); color:white; border-radius:50%; font-size:1.5rem; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(29,161,242,0.3);" onmouseover="this.style.transform='translateY(-5px) scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(29,161,242,0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(29,161,242,0.3)';"><i class="fab fa-twitter"></i></a>
+
+        <a href="#" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #ff0000, #cc0000); color:white; border-radius:50%; font-size:1.5rem; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(255,0,0,0.3);" onmouseover="this.style.transform='translateY(-5px) scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(255,0,0,0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(255,0,0,0.3)';"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer style="background:linear-gradient(135deg, #63b2bd 0%, #476b8f 100%); color:#f7f7f7; padding:60px 20px 25px; box-shadow:0 -4px 25px rgba(0,0,0,0.15); position:relative; overflow:hidden;">
+
+  <div style="position:absolute; top:-50px; right:-50px; width:220px; height:220px; background:rgba(255,255,255,0.08); border-radius:50%;"></div>
+  <div style="position:absolute; bottom:-60px; left:-60px; width:200px; height:200px; background:rgba(255,255,255,0.08); border-radius:50%;"></div>
+
+  <div class="container">
+    <div style="max-width:1200px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; text-align:left; gap:30px; position:relative; z-index:1;">
+      
+      <div style="flex:1 1 280px; min-width:260px;">
+        <h3 style="font-size:1.7rem; font-weight:700; margin-bottom:15px; color:#ffeb3b;">🌿 Shivendu Foundation</h3>
+        <p style="line-height:1.8; font-size:1rem; color:#f3f3f3;">
+          "शिवेन्दू फाउंडेशन – सकारात्मक बदलाची दिशा, नव्या भारताची प्रेरणा."  
+          आम्ही समाजात सकारात्मक बदल घडवण्यासाठी कार्यरत आहोत – शिक्षण, आरोग्य, पर्यावरण आणि मानवतेसाठी.
+        </p>
+      </div>
+
+      <div style="flex:1 1 200px; min-width:220px;">
+        <h4 style="font-size:1.3rem; font-weight:600; margin-bottom:15px; color:#ffeb3b;">🔗 जलद दुवे</h4>
+        <ul style="list-style:none; padding:0; line-height:2;">
+          <li><a href="#about" style="color:#ffffff; text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#ffeb3b';" onmouseout="this.style.color='#ffffff';">आमच्याबद्दल</a></li>
+          <li><a href="#core-values" style="color:#ffffff; text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#ffeb3b';" onmouseout="this.style.color='#ffffff';">आमची तत्त्वं</a></li>
+          <li><a href="#donate" style="color:#ffffff; text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#ffeb3b';" onmouseout="this.style.color='#ffffff';">दान करा</a></li>
+          <li><a href="#join" style="color:#ffffff; text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#ffeb3b';" onmouseout="this.style.color='#ffffff';">Volunteer व्हा</a></li>
+          <li><a href="#contact" style="color:#ffffff; text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#ffeb3b';" onmouseout="this.style.color='#ffffff';">संपर्क</a></li>
+        </ul>
+      </div>
+
+      <div style="flex:1 1 250px; min-width:250px;">
+        <h4 style="font-size:1.3rem; font-weight:600; margin-bottom:15px; color:#ffeb3b;">📞 संपर्क</h4>
+        <p style="margin:0; line-height:1.8; font-size:1rem; color:#f3f3f3;">
+          📍 नाशिक, महाराष्ट्र<br>
+          📧 <a href="mailto:info@shivendufoundation.org" style="color:#ffeb3b; text-decoration:none;">info@shivendufoundation.org</a><br>
+          📞 <a href="tel:+919XXXXXXXXX" style="color:#ffeb3b; text-decoration:none;">+91 9XXXXXXXXX</a>
+        </p>
+
+        <div style="margin-top:20px;">
+          <a href="#" style="margin-right:15px; color:white; transition:0.3s; display:inline-block;" onmouseover="this.style.color='#1877f2'; this.style.transform='scale(1.3)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" style="margin-right:15px; color:white; transition:0.3s; display:inline-block;" onmouseover="this.style.color='#e1306c'; this.style.transform='scale(1.3)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#" style="margin-right:15px; color:white; transition:0.3s; display:inline-block;" onmouseover="this.style.color='#1da1f2'; this.style.transform='scale(1.3)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';"><i class="fab fa-twitter fa-lg"></i></a>
+          <a href="#" style="color:white; transition:0.3s; display:inline-block;" onmouseover="this.style.color='#ff0000'; this.style.transform='scale(1.3)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';"><i class="fab fa-youtube fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:0; height:1px; background:rgba(255,255,255,0.3); margin:40px 0 20px;">
+
+    <div style="text-align:center; font-size:0.95rem; color:#f3f3f3;">
+      © 2025 <span style="color:#ffeb3b;">Shivendu Foundation</span> | सर्व हक्क राखीव 🌿 | Designed with ❤️ for Society
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Slider functionality with improved timing
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showNextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  setInterval(showNextSlide, 6000);
+
+  // Navbar scroll effect with smooth transition
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+
+  // Scroll reveal animation with intersection observer
+  const reveals = document.querySelectorAll('.reveal');
+  
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  reveals.forEach(reveal => {
+    observer.observe(reveal);
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      
+      if (target) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = target.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+          navbarCollapse.classList.remove('show');
+        }
+      }
+    });
+  });
+
+  // Donation form handler
+  function handleDonation() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const amount = document.getElementById('amount').value;
+    const message = document.getElementById('message').value;
+
+    if (!name || !email || !amount) {
+      alert('कृपया सर्व आवश्यक माहिती भरा (नाव, ईमेल, रक्कम)');
+      return;
+    }
+
+    if (amount < 1) {
+      alert('कृपया वैध रक्कम भरा');
+      return;
+    }
+
+    // Simulate donation processing
+    const btn = event.target;
+    btn.disabled = true;
+    btn.textContent = '⏳ प्रक्रिया सुरू आहे...';
+    btn.style.background = 'linear-gradient(135deg, #9bcc3b, #7fc928)';
+
+    setTimeout(() => {
+      alert(`धन्यवाद ${name}! तुमचं ₹${amount} चं योगदान आम्हाला मिळालं आहे. आम्ही लवकरच तुमच्याशी ${email} वर संपर्क साधू.`);
+      
+      // Reset form
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('amount').value = '';
+      document.getElementById('message').value = '';
+      
+      btn.disabled = false;
+      btn.textContent = '❤️ दान करा आता';
+      btn.style.background = 'linear-gradient(135deg,#e9453f,#f56842)';
+    }, 2000);
+  }
+
+  // Add parallax effect to hero section
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    
+    if (hero && scrolled < hero.offsetHeight) {
+      const parallaxSpeed = 0.5;
+      hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+    }
+  });
+
+  // Animate numbers in impact section with easing
+  function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const value = Math.floor(easeOutQuart * (end - start) + start);
+      
+      if (end >= 1000) {
+        element.textContent = value.toLocaleString('en-IN') + '+';
+      } else {
+        element.textContent = value + '+';
+      }
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Animate percentage values
+  function animatePercentage(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const value = Math.floor(easeOutQuart * (end - start) + start);
+      element.textContent = value + '%';
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Trigger animations when impact section is visible
+  const impactSection = document.getElementById('impact');
+  if (impactSection) {
+    const impactObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate counter numbers
+          const counters = entry.target.querySelectorAll('.counter');
+          counters.forEach((counter, index) => {
+            const card = counter.closest('.impact-card');
+            const targetValue = parseInt(card.getAttribute('data-count'));
+            setTimeout(() => {
+              animateValue(counter, 0, targetValue, 2000);
+            }, index * 200);
+          });
+
+          // Animate progress bars
+          const progressBars = entry.target.querySelectorAll('.progress-bar');
+          progressBars.forEach((bar, index) => {
+            const targetWidth = parseInt(bar.getAttribute('data-width'));
+            setTimeout(() => {
+              bar.style.width = targetWidth + '%';
+            }, 500 + (index * 200));
+          });
+
+          // Animate progress percentages
+          const progressPercents = entry.target.querySelectorAll('.progress-percent');
+          progressPercents.forEach((percent, index) => {
+            const targetPercent = parseInt(percent.getAttribute('data-target'));
+            setTimeout(() => {
+              animatePercentage(percent, 0, targetPercent, 2000);
+            }, 500 + (index * 200));
+          });
+
+          // Add particle effect on hover
+          const impactCards = entry.target.querySelectorAll('.impact-card');
+          impactCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+              createParticles(this);
+            });
+          });
+
+          impactObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    impactObserver.observe(impactSection);
+  }
+
+  // Create particle effect
+  function createParticles(element) {
+    const colors = ['#e53935', '#FFC107', '#9bcc3b', '#2196F3', '#9C27B0'];
+    
+    for (let i = 0; i < 5; i++) {
+      const particle = document.createElement('div');
+      particle.style.position = 'absolute';
+      particle.style.width = '8px';
+      particle.style.height = '8px';
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.borderRadius = '50%';
+      particle.style.pointerEvents = 'none';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = '50%';
+      particle.style.opacity = '0.8';
+      particle.style.transition = 'all 1s ease-out';
+      
+      element.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.style.transform = `translateY(-100px) translateX(${(Math.random() - 0.5) * 100}px)`;
+        particle.style.opacity = '0';
+      }, 10);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 1000);
+    }
+  }
+
+  // Add loading animation
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+      document.body.style.transition = 'opacity 0.5s ease';
+      document.body.style.opacity = '1';
+    }, 100);
+  });
+
+  // Mobile menu enhancement
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  if (navbarToggler) {
+    navbarToggler.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  }
+</script>
+
+</body>
+</html>
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 
